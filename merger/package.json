@@ -1,0 +1,12 @@
+{
+  "name": "simple-todos",
+  "version": "1.0.0",
+  "description": "Meteor.js Simple Todos with Task Categories and Drag-and-Drop",
+  "main": "main.js",
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "meteor-node-stubs": "^1.2.5"
+  }
+}

@@ -1,0 +1,47 @@
+<head>
+  <title>Simple Todos</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Todo List</h1>
+      
+      <div class="category-filters">
+        <h3>Filter by Category:</h3>
+        {{#each categories}}
+          <button class="category-filter {{#if selectedCategory}}active{{/if}}">
+            {{this}}
+          </button>
+        {{/each}}
+      </div>
+    </header>
+
+    <form class="new-task">
+      <input type="text" name="text" placeholder="Type to add new tasks" required />
+      <select name="category">
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Urgent">Urgent</option>
+      </select>
+      <button type="submit">Add Task</button>
+    </form>
+
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}}" draggable="true" data-id="{{_id}}">
+    <button class="delete">&times;</button>
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+    <span class="text">
+      <strong>{{text}}</strong>
+      <span class="category-badge" data-category="{{category}}">{{category}}</span>
+    </span>
+  </li>
+</template>
