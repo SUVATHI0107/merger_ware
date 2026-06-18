@@ -3,30 +3,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 // Define the Tasks collection
-Tasks = new Mongo.Collection('tasks');
 
-if (Meteor.isClient) {
-  // Create a reactive variable for the category filter
-  Template.body.onCreated(function() {
-    this.selectedCategory = new ReactiveVar('All');
-  });
-
-  Template.body.helpers({
-    tasks() {
-      const selectedCategory = Template.instance().selectedCategory.get();
-      if (selectedCategory === 'All') {
-        return Tasks.find({}, { sort: { order: 1 } });
-      } else {
-        return Tasks.find({ category: selectedCategory }, { sort: { order: 1 } });
-      }
-    },
-    categories() {
-      return ['All', 'Work', 'Personal', 'Urgent'];
-    },
-    selectedCategory() {
-      return Template.instance().selectedCategory.get();
-    }
-  });
 
   Template.body.events({
     'submit .new-task'(event) {
